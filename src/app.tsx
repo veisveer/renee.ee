@@ -1,5 +1,5 @@
 import React from "react";
-import {ImageList, ImageListItem} from "@mui/material";
+import {ImageList, ImageListItem, useMediaQuery} from "@mui/material";
 
 const itemData = [
 	{
@@ -93,6 +93,10 @@ const itemData = [
 ];
 
 const App = () => {
+	const isSmallMobile = useMediaQuery("(max-width: 480px)");
+	const isMobile = useMediaQuery("(max-width: 768px)");
+	const cols = isSmallMobile ? 3 : isMobile ? 4 : 5;
+
 	return (
 		<div
 			style={{
@@ -101,7 +105,7 @@ const App = () => {
 				margin: "16px",
 			}}
 		>
-			<ImageList variant="masonry" cols={5} gap={16}>
+			<ImageList variant="masonry" cols={cols} gap={16}>
 				{itemData.map((item) => (
 					<ImageListItem key={item.img}>
 						<img
